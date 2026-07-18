@@ -1,7 +1,7 @@
 package com.engineer360.user;
 
-
 import com.engineer360.common.entity.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,6 +18,7 @@ public class User extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
 

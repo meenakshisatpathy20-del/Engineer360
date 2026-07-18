@@ -53,4 +53,43 @@ public class ProjectService {
 
         return projectRepository.findByUser(user);
     }
+
+    public Project getProject(Long id, String email) {
+
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("User not found")
+                );
+
+        return projectRepository.findByIdAndUser(id, user)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Project not found")
+                );
+    }
+
+    public Project updateProject(
+            Long id,
+            String title,
+            String description,
+            String status,
+            String githubUrl,
+            String email
+    ) {
+
+        Project project = getProject(id, email);
+
+        project.setTitle(title);
+        project.setDescription(description);
+        project.setStatus(status);
+        project.setGithubUrl(githubUrl);
+
+        return projectRepository.save(project);
+    }
+
+    public void deleteProject(Long id, String email) {
+
+        Project project = getProject(id, email);
+
+        projectRepository.delete(project);
+    }
 }
