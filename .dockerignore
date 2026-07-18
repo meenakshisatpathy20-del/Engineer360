@@ -1,0 +1,5 @@
+docker --version
+.git
+.github
+.vscode
+*.log
