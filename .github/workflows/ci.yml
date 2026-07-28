@@ -38,4 +38,4 @@ jobs:
         run: ./mvnw clean package -DskipTests
 
       - name: Build Docker Image
-        run: docker build -t engineer360 
+        run: docker build -t engineer360 .
